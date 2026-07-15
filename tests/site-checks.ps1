@@ -64,6 +64,13 @@ Assert-Count '<span class="skill">' 8 'All eight skill tags must remain.'
 Assert-Contains 'assets/about-photo.jpg' 'Portrait asset must remain.'
 Assert-Contains 'application/ld+json' 'JSON-LD must remain.'
 Assert-Contains 'property="og:title"' 'Open Graph title must remain.'
+Assert-Contains '--lab-ink: #07111f;' 'Research Lab ink token is missing.'
+Assert-Contains '--lab-accent: #86a7ff;' 'Research Lab accent token is missing.'
+Assert-Contains '.case-first-grid {' 'Case-first desktop grid styles are missing.'
+Assert-Contains '.research-thesis-grid {' 'Research thesis layout styles are missing.'
+Assert-Contains '@media (prefers-reduced-motion: reduce)' 'Reduced-motion support is missing.'
+Assert-Contains '@media (max-width: 640px)' 'Small-screen breakpoint is missing.'
+Assert-Contains 'overflow-x: clip;' 'Horizontal overflow safeguard is missing.'
 
 if ($failures.Count -gt 0) {
   $failures | ForEach-Object { Write-Error $_ -ErrorAction Continue }
