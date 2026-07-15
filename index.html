@@ -123,6 +123,10 @@
       padding-top: 0;
     }
 
+    #about + #faq {
+      padding-top: 0;
+    }
+
     .section-header {
       max-width: 760px;
       margin-bottom: 52px;
@@ -210,17 +214,6 @@
 
     .button-primary:hover {
       background: var(--primary-dark);
-    }
-
-    .button-secondary {
-      color: var(--secondary);
-      border-color: var(--border);
-      background: rgba(255, 255, 255, 0.8);
-    }
-
-    .button-secondary:hover {
-      border-color: #94a3b8;
-      background: #ffffff;
     }
 
     /* Navigation */
@@ -571,8 +564,7 @@
     }
 
     .service-grid,
-    .advantage-grid,
-    .target-grid {
+    .advantage-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 22px;
@@ -693,83 +685,19 @@
       box-shadow: var(--shadow);
     }
 
-    .case-header {
-      display: grid;
-      align-items: center;
-      padding: 52px;
-      color: #ffffff;
-      background:
-        linear-gradient(
-          135deg,
-          #0f172a 0%,
-          #1e3a8a 65%,
-          #2563eb 100%
-        );
-      grid-template-columns: 1fr 0.7fr;
-      gap: 40px;
+    .case-video {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: var(--secondary);
     }
 
-    .case-header h3 {
-      margin: 12px 0 17px;
-      color: #ffffff;
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-    }
-
-    .case-header p {
-      color: #cbd5e1;
-    }
-
-    .case-badge {
-      display: inline-flex;
-      padding: 7px 13px;
-      color: #bfdbfe;
-      border: 1px solid rgba(191, 219, 254, 0.3);
-      border-radius: 999px;
-      background: rgba(37, 99, 235, 0.16);
-      font-size: 0.85rem;
-      font-weight: 800;
-    }
-
-    .case-visual {
-      display: grid;
-      padding: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.08);
-      gap: 12px;
-    }
-
-    .hotel-window {
-      height: 34px;
-      border-radius: 9px;
-      background: rgba(255, 255, 255, 0.16);
-    }
-
-    .hotel-hero {
-      display: grid;
-      height: 145px;
-      place-items: center;
-      color: #ffffff;
-      border-radius: 14px;
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.2),
-          rgba(255, 255, 255, 0.05)
-        );
-      font-weight: 900;
-    }
-
-    .hotel-columns {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-
-    .hotel-column {
-      height: 58px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.13);
+    .case-video iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
 
     .case-body {
@@ -948,18 +876,13 @@
         linear-gradient(145deg, #0f172a, #1e3a8a);
     }
 
-    .about-initial {
-      display: grid;
-      width: 170px;
-      height: 170px;
-      place-items: center;
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      font-size: 4rem;
-      font-weight: 900;
-      backdrop-filter: blur(14px);
+    .about-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
 
     .about-caption {
@@ -996,32 +919,6 @@
       background: #eff6ff;
       font-size: 0.9rem;
       font-weight: 800;
-    }
-
-    /* Target clients */
-
-    .target-card {
-      text-align: center;
-    }
-
-    .target-icon {
-      display: grid;
-      width: 54px;
-      height: 54px;
-      margin: 0 auto 20px;
-      place-items: center;
-      color: var(--primary);
-      border-radius: 16px;
-      background: var(--primary-light);
-      font-size: 1.2rem;
-      font-weight: 900;
-    }
-
-    .target-card:last-child {
-      width: 100%;
-      max-width: calc((100% - 44px) / 3);
-      grid-column: 1 / -1;
-      justify-self: center;
     }
 
     /* FAQ */
@@ -1132,18 +1029,9 @@
         margin: 20px auto 0;
       }
 
-      .case-header {
-        grid-template-columns: 1fr;
-      }
-
       .service-grid,
-      .advantage-grid,
-      .target-grid {
+      .advantage-grid {
         grid-template-columns: repeat(2, 1fr);
-      }
-
-      .target-card:last-child {
-        max-width: calc((100% - 22px) / 2);
       }
 
       .process-grid,
@@ -1195,7 +1083,6 @@
         padding: 78px 0;
       }
 
-      .case-header,
       .case-body {
         padding: 36px 26px;
       }
@@ -1221,16 +1108,10 @@
 
       .service-grid,
       .advantage-grid,
-      .target-grid,
       .process-grid,
       .case-process,
       .case-two-column {
         grid-template-columns: 1fr;
-      }
-
-      .target-card:last-child {
-        max-width: none;
-        grid-column: auto;
       }
 
       .hero-actions {
@@ -1254,7 +1135,6 @@
         padding: 18px;
       }
 
-      .case-header,
       .case-body {
         padding: 30px 20px;
       }
@@ -1277,7 +1157,7 @@
       {
         "@type": "Person",
         "@id": "https://your-domain.com/#person",
-        "name": "你的名字",
+        "name": "李唯礽",
         "url": "https://your-domain.com/",
         "jobTitle": "GEO 網站優化與資料分析",
         "knowsAbout": [
@@ -1369,9 +1249,6 @@
               查看優化方法
             </a>
 
-            <a class="button button-secondary" href="#target">
-              申請網站競爭力評估
-            </a>
           </div>
 
           <p class="hero-note">
@@ -1678,32 +1555,15 @@
         </div>
 
         <article class="case-shell">
-          <div class="case-header">
-            <div>
-              <span class="case-badge">
-                團隊實作案例
-              </span>
-
-              <h3>
-                飯店網站內容架構與 GEO 方法實作
-              </h3>
-
-              <p>
-                這個案例用來展示如何從網站盤點、內容架構、技術設定到成效觀測，
-                建立一套能依不同產業需求調整的優化流程。
-              </p>
-            </div>
-
-            <div class="case-visual" aria-hidden="true">
-              <div class="hotel-window"></div>
-              <div class="hotel-hero">飯店網站首頁</div>
-
-              <div class="hotel-columns">
-                <div class="hotel-column"></div>
-                <div class="hotel-column"></div>
-                <div class="hotel-column"></div>
-              </div>
-            </div>
+          <div class="case-video">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/6hwyCr4K378?rel=0"
+              title="飯店網站內容架構與 GEO 方法實作影片"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
           </div>
 
           <div class="case-body">
@@ -1875,8 +1735,11 @@
     <section class="section" id="about">
       <div class="container about-grid">
         <div class="about-visual">
-          <!-- 可以將 W 改成姓名英文縮寫 -->
-          <div class="about-initial">W</div>
+          <img
+            class="about-photo"
+            src="assets/about-photo.jpg"
+            alt="穿著西裝的 GEO 網站優化服務者形象照"
+          >
 
           <div class="about-caption">
             資料科學 × 網站技術 × GEO 研究
@@ -1891,7 +1754,7 @@
           </h2>
 
           <p>
-            我目前就讀資料科學相關科系，
+            我目前就讀資料科學系，
             研究方向聚焦於 GEO、AEO 與生成式搜尋可見性。
           </p>
 
@@ -1918,80 +1781,6 @@
             <span class="skill">結構化資料</span>
             <span class="skill">AI 可見性觀測</span>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Target clients -->
-    <section class="section section-white" id="target">
-      <div class="container">
-        <div class="section-header center">
-          <span class="eyebrow">Suitable For</span>
-
-          <h2>適合合作的網站與企業</h2>
-
-          <p class="section-description">
-            適合希望改善搜尋基礎、建立內容差異，
-            並願意持續累積網站資產的中小企業與品牌。
-          </p>
-        </div>
-
-        <div class="target-grid">
-          <article class="card target-card">
-            <div class="target-icon">01</div>
-            <h3>已有網站但搜尋成效不理想</h3>
-            <p>
-              網站已有內容與流量基礎，但搜尋曝光、索引或轉換表現仍有改善空間。
-            </p>
-          </article>
-
-          <article class="card target-card">
-            <div class="target-icon">02</div>
-            <h3>想與大型平台或競爭網站建立差異</h3>
-            <p>
-              希望透過更聚焦的主題、第一手資訊與完整回答建立競爭優勢。
-            </p>
-          </article>
-
-          <article class="card target-card">
-            <div class="target-icon">03</div>
-            <h3>準備重新製作網站</h3>
-            <p>
-              希望在建站初期就建立清楚的內容架構、頁面層級與搜尋基礎。
-            </p>
-          </article>
-
-          <article class="card target-card">
-            <div class="target-icon">04</div>
-            <h3>服務內容複雜</h3>
-            <p>
-              產品或服務項目較多，不知道如何分類資訊與規劃網站頁面。
-            </p>
-          </article>
-
-          <article class="card target-card">
-            <div class="target-icon">05</div>
-            <h3>缺少 FAQ、案例或專業內容</h3>
-            <p>
-              網站缺少能回答客戶疑問、展示實績與建立專業度的內容。
-            </p>
-          </article>
-
-          <article class="card target-card">
-            <div class="target-icon">06</div>
-            <h3>想觀測品牌在 AI 搜尋中的呈現</h3>
-            <p>
-              希望建立固定問題測試與紀錄方式，了解品牌及競爭網站的呈現變化。
-            </p>
-          </article>
-
-          <article class="card target-card">
-            <div class="target-icon">07</div>
-            <h3>願意持續更新與累積內容</h3>
-            <p>
-              將 GEO 視為長期優化工作，願意依搜尋需求與觀測結果持續改善。
-            </p>
-          </article>
         </div>
       </div>
     </section>
