@@ -1040,6 +1040,24 @@
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
     }
 
+    .skip-link {
+      position: fixed;
+      z-index: 1100;
+      top: 12px;
+      left: 12px;
+      padding: 10px 14px;
+      color: var(--lab-ink);
+      border-radius: 8px;
+      background: var(--lab-accent);
+      font-weight: 850;
+      transform: translateY(-150%);
+      transition: transform 0.2s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
     .logo {
       color: #f7f9ff;
       letter-spacing: -0.015em;
@@ -1084,6 +1102,30 @@
       color: #dfe8fa;
       border-color: var(--border-dark);
       background: var(--lab-panel);
+      align-content: center;
+      justify-items: center;
+      gap: 5px;
+    }
+
+    .menu-line {
+      display: block;
+      width: 20px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .menu-button[aria-expanded="true"] .menu-line:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-button[aria-expanded="true"] .menu-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-button[aria-expanded="true"] .menu-line:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
     }
 
     .section {
@@ -1774,10 +1816,12 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main-content">跳到主要內容</a>
+
   <!-- Header -->
   <header class="site-header">
     <nav class="navbar container" aria-label="主要導覽列">
-      <a class="logo" href="#home" aria-label="返回首頁">
+      <a class="logo" href="#case-study" aria-label="返回首頁">
         <span class="logo-mark">
           <img src="assets/site-icon.png" alt="">
         </span>
@@ -1789,9 +1833,12 @@
         id="menuButton"
         type="button"
         aria-label="開啟選單"
+        aria-controls="navLinks"
         aria-expanded="false"
       >
-        ☰
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
       </button>
 
       <ul class="nav-links" id="navLinks">
@@ -1803,7 +1850,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main-content">
     <!-- Case Study -->
     <section class="case-first" id="case-study">
       <div class="container case-first-grid">
@@ -2374,7 +2421,7 @@
       const isOpen = navLinks.classList.toggle("active");
 
       menuButton.setAttribute("aria-expanded", String(isOpen));
-      menuButton.textContent = isOpen ? "✕" : "☰";
+      menuButton.setAttribute("aria-label", isOpen ? "關閉選單" : "開啟選單");
       document.body.classList.toggle("menu-open", isOpen);
     });
 
@@ -2382,7 +2429,7 @@
       item.addEventListener("click", () => {
         navLinks.classList.remove("active");
         menuButton.setAttribute("aria-expanded", "false");
-        menuButton.textContent = "☰";
+        menuButton.setAttribute("aria-label", "開啟選單");
         document.body.classList.remove("menu-open");
       });
     });

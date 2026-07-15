@@ -71,6 +71,16 @@ Assert-Contains '.research-thesis-grid {' 'Research thesis layout styles are mis
 Assert-Contains '@media (prefers-reduced-motion: reduce)' 'Reduced-motion support is missing.'
 Assert-Contains '@media (max-width: 640px)' 'Small-screen breakpoint is missing.'
 Assert-Contains 'overflow-x: clip;' 'Horizontal overflow safeguard is missing.'
+Assert-Contains 'aria-controls="navLinks"' 'Menu button must identify the controlled navigation.'
+Assert-Contains '<span class="menu-line"></span>' 'Menu button must use stable CSS icon lines.'
+Assert-Contains $expected['menu_label_expression'] 'Menu state must update its accessible label.'
+Assert-Contains '<a class="logo" href="#case-study"' 'Logo must return to the case-first top section.'
+Assert-Contains '<a class="skip-link" href="#main-content">' 'Keyboard users need a skip-to-content link.'
+Assert-Contains '<main id="main-content">' 'Main content must expose a skip-link target.'
+
+if ($html.Contains($expected['menu_open_symbol']) -or $html.Contains($expected['menu_close_symbol'])) {
+  $failures.Add('Structural UI must not use Emoji menu icons.')
+}
 
 if ($failures.Count -gt 0) {
   $failures | ForEach-Object { Write-Error $_ -ErrorAction Continue }
