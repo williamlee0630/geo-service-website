@@ -1,0 +1,14 @@
+case_copy	畫面展示查詢關鍵字後，生成式搜尋整理出的 AI 摘要。
+case_heading	GEO/SEO<br>實例呈現
+case_evidence_heading	影片在展示什麼
+limitation	這項服務不承諾結果
+service_heading	<h2>合作會處理哪些問題</h2>
+service_1	釐清網站現況
+service_2	整理重要資訊
+service_3	改善網站基礎
+service_4	觀察調整結果
+removed_1	Meta title 與 description
+removed_2	Canonical 與內部連結
+removed_3	Sitemap、robots.txt 與爬取檢查
+removed_4	Schema 結構化資料
+removed_5	固定問題的 AI 搜尋測試
