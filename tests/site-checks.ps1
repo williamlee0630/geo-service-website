@@ -77,6 +77,9 @@ Assert-Contains $expected['menu_label_expression'] 'Menu state must update its a
 Assert-Contains '<a class="logo" href="#case-study"' 'Logo must return to the case-first top section.'
 Assert-Contains '<a class="skip-link" href="#main-content">' 'Keyboard users need a skip-to-content link.'
 Assert-Contains '<main id="main-content">' 'Main content must expose a skip-link target.'
+Assert-Contains '--case-container: 1260px;' 'Expanded case container token is missing.'
+Assert-Contains 'grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);' 'Desktop case grid must allocate 64 percent to video.'
+Assert-Contains 'width: min(calc(100% - 28px), var(--case-container));' 'Mobile case gutter must remain 14px per side.'
 
 if ($html.Contains($expected['menu_open_symbol']) -or $html.Contains($expected['menu_close_symbol'])) {
   $failures.Add('Structural UI must not use Emoji menu icons.')

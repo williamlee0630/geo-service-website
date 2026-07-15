@@ -64,6 +64,7 @@
       --radius-medium: 16px;
       --radius-small: 10px;
       --container: 1180px;
+      --case-container: 1260px;
       --primary: var(--lab-accent-strong);
       --primary-dark: #4267d2;
       --primary-light: #e5ebff;
@@ -1191,7 +1192,8 @@
 
     .case-first-grid {
       display: grid;
-      grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+      width: min(calc(100% - 40px), var(--case-container));
+      grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
       align-items: center;
       gap: clamp(36px, 5vw, 72px);
     }
@@ -1660,6 +1662,7 @@
       }
 
       .case-first-grid {
+        width: min(calc(100% - 28px), var(--case-container));
         gap: 0;
       }
 
