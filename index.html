@@ -8,11 +8,11 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>GEO 網站優化｜讓搜尋引擎與 AI 更理解你的品牌</title>
+  <title>中小企業 GEO 網站優化｜建立長期搜尋與 AI 可見性</title>
 
   <meta
     name="description"
-    content="結合資料分析、網站技術與 GEO 研究，協助中小企業改善網站內容架構、技術設定與生成式搜尋可見性。"
+    content="透過 GEO、內容架構與技術優化，協助中小企業建立可長期累積的搜尋與 AI 可見性，在特定搜尋需求中建立競爭優勢。"
   >
 
   <meta
@@ -31,12 +31,12 @@
   <!-- Open Graph -->
   <meta
     property="og:title"
-    content="GEO 網站優化｜讓搜尋引擎與 AI 更理解你的品牌"
+    content="中小企業 GEO 網站優化｜建立長期搜尋與 AI 可見性"
   >
 
   <meta
     property="og:description"
-    content="協助中小企業改善網站內容架構、技術設定與生成式搜尋可見性。"
+    content="透過 GEO、內容架構與技術優化，協助中小企業長期累積搜尋與 AI 可見性，在細分需求中建立競爭優勢。"
   >
 
   <meta property="og:type" content="website">
@@ -116,6 +116,10 @@
     }
 
     #geo + #services {
+      padding-top: 0;
+    }
+
+    #advantages + #case-study {
       padding-top: 0;
     }
 
@@ -206,6 +210,17 @@
 
     .button-primary:hover {
       background: var(--primary-dark);
+    }
+
+    .button-secondary {
+      color: var(--secondary);
+      border-color: var(--border);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .button-secondary:hover {
+      border-color: #94a3b8;
+      background: #ffffff;
     }
 
     /* Navigation */
@@ -556,6 +571,7 @@
     }
 
     .service-grid,
+    .advantage-grid,
     .target-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -646,6 +662,25 @@
       color: #1e3a8a;
       text-align: center;
       font-weight: 700;
+    }
+
+    /* Competitive advantages */
+
+    .advantage-card {
+      text-align: center;
+    }
+
+    .advantage-number {
+      display: grid;
+      width: 54px;
+      height: 54px;
+      margin: 0 auto 20px;
+      place-items: center;
+      color: var(--primary);
+      border-radius: 16px;
+      background: var(--primary-light);
+      font-size: 1.1rem;
+      font-weight: 900;
     }
 
     /* Case study */
@@ -860,21 +895,6 @@
       color: #3f6212;
     }
 
-    .personal-role {
-      padding: 28px;
-      color: #e2e8f0;
-      border-radius: 18px;
-      background: var(--secondary);
-    }
-
-    .personal-role h3 {
-      color: #ffffff;
-    }
-
-    .personal-role p {
-      color: #cbd5e1;
-    }
-
     /* Process */
 
     .process-grid {
@@ -997,6 +1017,13 @@
       font-weight: 900;
     }
 
+    .target-card:last-child {
+      width: 100%;
+      max-width: calc((100% - 44px) / 3);
+      grid-column: 1 / -1;
+      justify-self: center;
+    }
+
     /* FAQ */
 
     .faq-list {
@@ -1110,8 +1137,13 @@
       }
 
       .service-grid,
+      .advantage-grid,
       .target-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .target-card:last-child {
+        max-width: calc((100% - 22px) / 2);
       }
 
       .process-grid,
@@ -1188,11 +1220,17 @@
       }
 
       .service-grid,
+      .advantage-grid,
       .target-grid,
       .process-grid,
       .case-process,
       .case-two-column {
         grid-template-columns: 1fr;
+      }
+
+      .target-card:last-child {
+        max-width: none;
+        grid-column: auto;
       }
 
       .hero-actions {
@@ -1241,13 +1279,15 @@
         "@id": "https://your-domain.com/#person",
         "name": "你的名字",
         "url": "https://your-domain.com/",
-        "jobTitle": "GEO 實作研究者",
+        "jobTitle": "GEO 網站優化與資料分析",
         "knowsAbout": [
           "Generative Engine Optimization",
           "Search Engine Optimization",
           "Google Analytics 4",
           "網站內容架構",
-          "結構化資料"
+          "結構化資料",
+          "中小企業網站優化",
+          "內容策略"
         ]
       },
       {
@@ -1257,13 +1297,18 @@
         "provider": {
           "@id": "https://your-domain.com/#person"
         },
-        "description": "協助中小企業改善網站內容架構、技術設定與生成式搜尋可見性。",
+        "description": "透過 GEO、內容架構與技術優化，協助跨產業中小企業建立可長期累積的搜尋與 AI 可見性。",
         "areaServed": "Taiwan",
+        "audience": {
+          "@type": "BusinessAudience",
+          "audienceType": "在地中小企業、專業服務公司、電商品牌、個人品牌、教育顧問、新創公司與觀光服務業"
+        },
         "serviceType": [
           "GEO 網站分析",
           "網站內容架構優化",
           "技術 SEO",
-          "AI 搜尋可見性觀測"
+          "結構化資料規劃",
+          "搜尋與 AI 可見性觀測"
         ]
       }
     ]
@@ -1293,7 +1338,7 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#geo">什麼是 GEO</a></li>
         <li><a href="#services">服務內容</a></li>
-        <li><a href="#case-study">團隊案例</a></li>
+        <li><a href="#case-study">實作案例</a></li>
         <li><a href="#about">關於我</a></li>
       </ul>
     </nav>
@@ -1310,21 +1355,23 @@
           </div>
 
           <h1 class="hero-title">
-            讓你的網站更容易被<br>
-            搜尋引擎與 <span>AI 理解</span>
+            讓中小企業網站建立<br>
+            <span>長期搜尋優勢</span>
           </h1>
 
           <p class="hero-description">
-            透過網站內容架構、技術檢查與 GEO 優化，
-            協助中小企業清楚呈現品牌、服務與專業資訊，
-            提升網站在生成式搜尋環境中的可理解性與可見性。
+            透過 GEO、內容架構與技術優化，協助網站持續累積主題權威、
+            搜尋收錄與 AI 可見性，在特定搜尋需求中與大型平台及競爭對手網站競爭。
           </p>
 
           <div class="hero-actions">
-            <a class="button button-primary" href="#case-study">
-              查看飯店優化案例
+            <a class="button button-primary" href="#advantages">
+              查看優化方法
             </a>
 
+            <a class="button button-secondary" href="#target">
+              申請網站競爭力評估
+            </a>
           </div>
 
           <p class="hero-note">
@@ -1343,7 +1390,7 @@
 
             <div class="search-box">
               <span>⌕</span>
-              台北住宿推薦與交通方便的飯店
+              如何選擇適合的專業服務公司
             </div>
 
             <div class="ai-answer">
@@ -1358,17 +1405,17 @@
               <div class="source-list">
                 <div class="source-item">
                   <span class="source-number">1</span>
-                  <span>飯店房型與適合旅客資訊</span>
+                  <span>企業網站服務內容與常見問題</span>
                 </div>
 
                 <div class="source-item">
                   <span class="source-number">2</span>
-                  <span>交通方式與附近景點介紹</span>
+                  <span>品牌案例、服務流程與專業資訊</span>
                 </div>
 
                 <div class="source-item">
                   <span class="source-number">3</span>
-                  <span>旅客常見問題與住宿說明</span>
+                  <span>選擇指南、比較內容與第一手經驗</span>
                 </div>
               </div>
             </div>
@@ -1391,14 +1438,13 @@
           <span class="eyebrow">About GEO</span>
 
           <h2>
-            GEO 不只是讓網站被找到，<br>
-            更要讓 AI 看得懂
+            GEO 的價值，不只是短期曝光，<br>
+            而是建立可長期累積的內容資產
           </h2>
 
           <p class="section-description">
-            當使用者透過生成式搜尋工具詢問產品、服務或在地資訊時，
-            網站內容是否清楚、可信且容易整理，
-            會影響搜尋系統如何理解與呈現品牌。
+            GEO 不是一次性的關鍵字調整，而是持續改善內容品質、
+            網站架構、品牌資訊與技術基礎，讓搜尋系統更容易理解網站價值。
           </p>
         </div>
 
@@ -1406,12 +1452,12 @@
           <article class="definition-card">
             <span>Generative Engine Optimization</span>
 
-            <h3>什麼是 GEO？</h3>
+            <h3>GEO 是長期內容與技術策略</h3>
 
             <p>
-              GEO 是針對生成式搜尋環境進行的網站優化。
-              它建立在良好的網站技術、SEO 基礎與內容品質之上，
-              並進一步關注內容是否容易被 AI 理解、整理、引用及正確描述。
+              GEO 不只是調整關鍵字，而是把企業的專業、服務與第一手資訊，
+              透過清楚的內容架構、品牌訊號及穩定的技術基礎，
+              累積成可持續更新的網站資產。
             </p>
           </article>
 
@@ -1420,10 +1466,10 @@
               <div class="definition-icon">01</div>
 
               <div>
-                <h3>主題清楚</h3>
+                <h3>內容與架構並進</h3>
                 <p>
-                  讓搜尋系統可以快速判斷網站提供什麼服務、
-                  適合哪些客群，以及各頁面的主要用途。
+                  內容品質、頁面關係、品牌資訊與技術設定需要互相配合，
+                  才能協助搜尋系統正確理解網站。
                 </p>
               </div>
             </article>
@@ -1432,10 +1478,10 @@
               <div class="definition-icon">02</div>
 
               <div>
-                <h3>資訊完整</h3>
+                <h3>聚焦比頁面數量更重要</h3>
                 <p>
-                  補充服務內容、流程、常見問題、地點、特色與案例，
-                  降低 AI 理解品牌時的資訊缺口。
+                  小型網站不必擁有比大型平台更多頁面，
+                  可以集中資源提供更聚焦、更深入的內容。
                 </p>
               </div>
             </article>
@@ -1444,10 +1490,10 @@
               <div class="definition-icon">03</div>
 
               <div>
-                <h3>內容可信</h3>
+                <h3>建立細分領域優勢</h3>
                 <p>
-                  以真實、具體且可驗證的資訊建立內容，
-                  避免誇大宣傳或出現無法證明的結果。
+                  針對特定問題、地區、服務與客群補足具體資訊，
+                  增加與大型平台及競爭網站形成差異的機會。
                 </p>
               </div>
             </article>
@@ -1456,10 +1502,10 @@
               <div class="definition-icon">04</div>
 
               <div>
-                <h3>可以持續觀測</h3>
+                <h3>持續優化與觀測</h3>
                 <p>
-                  透過搜尋曝光、網站流量、索引狀態與固定問題測試，
-                  觀察網站優化前後的變化。
+                  GEO 不是一次性修改，需要持續更新內容並觀察索引、
+                  搜尋曝光、網站流量與 AI 呈現變化。
                 </p>
               </div>
             </article>
@@ -1474,11 +1520,11 @@
         <div class="section-header center">
           <span class="eyebrow">Services</span>
 
-          <h2>我能協助的網站優化項目</h2>
+          <h2>跨產業的 GEO 網站優化服務</h2>
 
           <p class="section-description">
-            依據網站現況與企業目標，
-            規劃適合的內容、技術與觀測方式。
+            適用於在地中小企業、專業服務公司、電商品牌、個人品牌與工作室、
+            教育與顧問服務、觀光服務業、新創公司，以及已有網站但搜尋成效不理想的企業。
           </p>
         </div>
 
@@ -1486,36 +1532,36 @@
           <article class="card service-card">
             <div class="service-icon">A</div>
 
-            <h3>GEO 與網站現況分析</h3>
+            <h3>品牌與網站現況分析</h3>
 
             <p>
-              先找出網站目前影響搜尋理解與內容呈現的主要問題。
+              盤點企業定位、網站基礎與搜尋競爭情境，找出優先改善方向。
             </p>
 
             <ul class="service-list">
-              <li>內容架構與頁面分類檢查</li>
-              <li>搜尋引擎收錄狀態</li>
-              <li>Sitemap 與 robots.txt</li>
-              <li>品牌資訊完整度分析</li>
-              <li>AI 搜尋結果初步測試</li>
+              <li>品牌與公司介紹盤點</li>
+              <li>產品或服務頁面分析</li>
+              <li>案例、實績與專業資訊盤點</li>
+              <li>搜尋需求與競爭內容分析</li>
+              <li>網站索引與內容缺口檢查</li>
             </ul>
           </article>
 
           <article class="card service-card">
             <div class="service-icon">B</div>
 
-            <h3>網站內容架構優化</h3>
+            <h3>內容架構與主題規劃</h3>
 
             <p>
-              將企業資訊整理成使用者與搜尋系統都容易理解的內容。
+              將企業知識整理成聚焦、深入且彼此連結的主題內容。
             </p>
 
             <ul class="service-list">
-              <li>首頁資訊重新整理</li>
-              <li>服務頁面規劃</li>
-              <li>FAQ 常見問題設計</li>
-              <li>標題層級與段落調整</li>
-              <li>內部連結規劃</li>
+              <li>地區型內容與 FAQ 常見問題</li>
+              <li>專業知識文章與選擇指南</li>
+              <li>案例、實績與比較型內容</li>
+              <li>使用流程與頁面層級</li>
+              <li>主題群集與內部連結</li>
             </ul>
           </article>
 
@@ -1530,28 +1576,28 @@
 
             <ul class="service-list">
               <li>Meta title 與 description</li>
-              <li>Canonical 與 Sitemap</li>
+              <li>內部連結與 Canonical</li>
+              <li>Sitemap 與爬取檢查</li>
               <li>Schema 結構化資料</li>
-              <li>Search Console 設定</li>
-              <li>GA4 基本追蹤設定</li>
+              <li>頁面層級與索引基礎</li>
             </ul>
           </article>
 
           <article class="card service-card">
             <div class="service-icon">D</div>
 
-            <h3>GEO 成效觀測</h3>
+            <h3>搜尋與 AI 可見性觀測</h3>
 
             <p>
-              建立可重複的觀測方式，記錄網站優化前後的差異。
+              建立可重複的觀測方式，持續記錄網站與競爭環境變化。
             </p>
 
             <ul class="service-list">
-              <li>固定 AI 問題測試</li>
-              <li>品牌出現狀況紀錄</li>
-              <li>網站引用來源紀錄</li>
-              <li>搜尋曝光與點擊變化</li>
-              <li>後續改善建議</li>
+              <li>Search Console 搜尋觀測</li>
+              <li>GA4 流量與內容成效</li>
+              <li>AI 搜尋與引用觀測</li>
+              <li>品牌及競爭網站變化</li>
+              <li>持續更新與改善建議</li>
             </ul>
           </article>
         </div>
@@ -1563,16 +1609,71 @@
       </div>
     </section>
 
+    <!-- Competitive advantages -->
+    <section class="section" id="advantages">
+      <div class="container">
+        <div class="section-header center">
+          <span class="eyebrow">Competitive Advantages</span>
+
+          <h2>小型網站也能在特定主題上建立競爭優勢</h2>
+
+          <p class="section-description">
+            網站規模不是唯一條件；聚焦需求、內容深度、第一手資訊與持續優化，
+            都有助於中小企業在細分搜尋情境中提升可見性。
+          </p>
+        </div>
+
+        <div class="advantage-grid">
+          <article class="card advantage-card">
+            <div class="advantage-number">01</div>
+            <h3>聚焦細分搜尋需求</h3>
+            <p>大型網站通常涵蓋大量主題，小型網站可以集中資源，深入回答特定產業、地區與客群真正關心的問題。</p>
+          </article>
+
+          <article class="card advantage-card">
+            <div class="advantage-number">02</div>
+            <h3>建立完整主題內容</h3>
+            <p>透過首頁、服務頁、FAQ、案例與知識內容之間的連結，建立完整的主題架構。</p>
+          </article>
+
+          <article class="card advantage-card">
+            <div class="advantage-number">03</div>
+            <h3>提供具體的第一手資訊</h3>
+            <p>加入真實服務流程、案例、數據、常見問題與專業觀點，降低與競爭網站的內容同質化。</p>
+          </article>
+
+          <article class="card advantage-card">
+            <div class="advantage-number">04</div>
+            <h3>持續更新與觀測</h3>
+            <p>定期補充新資訊、修正過期內容，並觀察搜尋曝光、索引、AI 回答與競爭網站變化。</p>
+          </article>
+
+          <article class="card advantage-card">
+            <div class="advantage-number">05</div>
+            <h3>改善技術基礎</h3>
+            <p>確保網站可以正常爬取與索引，並透過內部連結、結構化資料及清楚的頁面層級協助搜尋系統理解。</p>
+          </article>
+
+          <article class="card advantage-card">
+            <div class="advantage-number">06</div>
+            <h3>長期累積網站權威</h3>
+            <p>持續增加網站在特定主題上的內容完整度、可信度與被搜尋系統引用的機會。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- Case Study -->
     <section class="section" id="case-study">
       <div class="container">
         <div class="section-header center">
           <span class="eyebrow">Case Study</span>
 
-          <h2>團隊飯店網站優化案例</h2>
+          <h2>跨產業優化方法的實作案例：飯店網站</h2>
 
           <p class="section-description">
-            以真實團隊專案為基礎，呈現網站分析、內容規劃與優化流程。
+            以下飯店網站為團隊實作案例，但其中使用的網站盤點、內容分類、
+            FAQ 規劃、結構化資料與成效觀測方法，同樣可以應用於不同產業的企業網站。
           </p>
         </div>
 
@@ -1584,13 +1685,12 @@
               </span>
 
               <h3>
-                飯店網站內容架構與 GEO 優化
+                飯店網站內容架構與 GEO 方法實作
               </h3>
 
               <p>
-                團隊協助飯店網站重新整理內容與頁面架構，
-                改善原有資訊分散、頁面主題不明確，
-                以及重要住宿資訊不容易被快速理解的問題。
+                這個案例用來展示如何從網站盤點、內容架構、技術設定到成效觀測，
+                建立一套能依不同產業需求調整的優化流程。
               </p>
             </div>
 
@@ -1698,17 +1798,10 @@
                 <span class="case-tag">Sitemap 與索引</span>
                 <span class="case-tag">成效追蹤</span>
               </div>
-            </section>
-
-            <section class="case-block">
-              <div class="case-title">
-                <span class="case-title-number">04</span>
-                <h3>目前成果呈現</h3>
-              </div>
 
               <div class="result-box">
                 <strong>
-                  目前以網站內容結構與資訊完整度改善為主要成果
+                  方法重點是改善網站內容結構與資訊完整度
                 </strong>
 
                 <p>
@@ -1716,24 +1809,10 @@
                   使房型、設施、交通及常見問題有更清楚的呈現方式。
                   後續持續觀測搜尋曝光、索引狀態與生成式搜尋呈現狀況。
                 </p>
-              </div>
-            </section>
-
-            <section class="case-block">
-              <div class="case-title">
-                <span class="case-title-number">05</span>
-                <h3>我的參與內容</h3>
-              </div>
-
-              <div class="personal-role">
-                <h3>
-                  網站分析、GEO 規劃與成效觀測
-                </h3>
 
                 <p>
-                  我在此團隊專案中主要參與網站現況分析、
-                  GEO 優化項目整理、內容架構規劃、
-                  搜尋可見性觀測，以及優化前後資料紀錄。
+                  這套方法不限定於旅宿產業，也可以依照不同企業的產品、
+                  服務、地區與目標客群進行調整。
                 </p>
               </div>
             </section>
@@ -1852,57 +1931,65 @@
           <h2>適合合作的網站與企業</h2>
 
           <p class="section-description">
-            目前主要希望從範圍明確的小型專案開始，
-            與中小企業共同找出適合的改善方向。
+            適合希望改善搜尋基礎、建立內容差異，
+            並願意持續累積網站資產的中小企業與品牌。
           </p>
         </div>
 
         <div class="target-grid">
           <article class="card target-card">
             <div class="target-icon">01</div>
-            <h3>已有網站但內容老舊</h3>
+            <h3>已有網站但搜尋成效不理想</h3>
             <p>
-              網站長期沒有整理，服務資訊與品牌定位已經不符合現況。
+              網站已有內容與流量基礎，但搜尋曝光、索引或轉換表現仍有改善空間。
             </p>
           </article>
 
           <article class="card target-card">
             <div class="target-icon">02</div>
-            <h3>準備重新製作網站</h3>
+            <h3>想與大型平台或競爭網站建立差異</h3>
             <p>
-              希望在建站初期就建立清楚的內容架構與搜尋基礎。
+              希望透過更聚焦的主題、第一手資訊與完整回答建立競爭優勢。
             </p>
           </article>
 
           <article class="card target-card">
             <div class="target-icon">03</div>
-            <h3>服務內容較複雜</h3>
+            <h3>準備重新製作網站</h3>
             <p>
-              不知道如何分類服務、規劃頁面與回答客戶常見問題。
+              希望在建站初期就建立清楚的內容架構、頁面層級與搜尋基礎。
             </p>
           </article>
 
           <article class="card target-card">
             <div class="target-icon">04</div>
-            <h3>在地店家與旅宿</h3>
+            <h3>服務內容複雜</h3>
             <p>
-              需要清楚呈現地址、交通、服務特色與適合客群。
+              產品或服務項目較多，不知道如何分類資訊與規劃網站頁面。
             </p>
           </article>
 
           <article class="card target-card">
             <div class="target-icon">05</div>
-            <h3>希望改善 AI 呈現</h3>
+            <h3>缺少 FAQ、案例或專業內容</h3>
             <p>
-              想了解品牌目前在生成式搜尋回答中的出現狀況。
+              網站缺少能回答客戶疑問、展示實績與建立專業度的內容。
             </p>
           </article>
 
           <article class="card target-card">
             <div class="target-icon">06</div>
-            <h3>願意從小型專案開始</h3>
+            <h3>想觀測品牌在 AI 搜尋中的呈現</h3>
             <p>
-              先從網站分析或部分頁面優化開始，再依成果持續調整。
+              希望建立固定問題測試與紀錄方式，了解品牌及競爭網站的呈現變化。
+            </p>
+          </article>
+
+          <article class="card target-card">
+            <div class="target-icon">07</div>
+            <h3>願意持續更新與累積內容</h3>
+            <p>
+              將 GEO 視為長期優化工作，願意依搜尋需求與觀測結果持續改善。
             </p>
           </article>
         </div>
@@ -1933,6 +2020,19 @@
 
           <details class="faq-item">
             <summary>
+              小型網站真的有機會與大型網站競爭嗎？
+            </summary>
+
+            <div class="faq-answer">
+              大型網站通常具有較高的網域權威與內容規模，但小型網站可以透過更聚焦的主題、
+              更具體的第一手資訊、更完整的問題回答與持續更新，
+              在特定搜尋意圖、地區或細分服務中建立競爭優勢。
+              實際結果仍會受到產業競爭、網站基礎與執行時間影響。
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
               進行 GEO 優化後，一定會被 AI 引用嗎？
             </summary>
 
@@ -1940,6 +2040,18 @@
               無法保證一定被特定搜尋引擎或 AI 平台引用。
               優化的目標是改善內容品質、網站架構與技術設定，
               提高網站被正確理解與呈現的機會。
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              GEO 優化需要多久才會看到成果？
+            </summary>
+
+            <div class="faq-answer">
+              搜尋收錄與生成式搜尋呈現通常需要持續觀測，不同網站與產業所需時間不同。
+              服務重點是建立可以長期累積的內容與技術基礎，
+              而不是承諾短期排名或引用結果。
             </div>
           </details>
 
@@ -2006,7 +2118,7 @@
       <div class="footer-links">
         <a href="#geo">GEO 介紹</a>
         <a href="#services">服務內容</a>
-        <a href="#case-study">團隊案例</a>
+        <a href="#case-study">實作案例</a>
       </div>
     </div>
   </footer>
