@@ -121,8 +121,12 @@
       padding-top: 0;
     }
 
-    #home + #case-study {
-      padding-top: 0;
+    main > #case-study:first-child {
+      padding-top: clamp(120px, 10vw, 150px);
+    }
+
+    #case-study + #home {
+      padding-top: 80px;
     }
 
     #about + #faq {
@@ -1222,6 +1226,60 @@
   </header>
 
   <main>
+    <!-- Case Study -->
+    <section class="section" id="case-study">
+      <div class="container">
+        <div class="section-header center">
+          <span class="eyebrow">Case Study</span>
+
+          <h2>過往案例呈現</h2>
+
+          <p class="section-description">
+            影片記錄我們查詢一組與飯店推薦相關的關鍵字後，
+            團隊施作的網站出現在生成式搜尋 AI 摘要中的畫面。
+          </p>
+        </div>
+
+        <article class="case-shell">
+          <div class="case-video">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/6hwyCr4K378?rel=0"
+              title="飯店推薦網站出現在 AI 摘要的查詢紀錄"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <div class="case-body">
+            <section class="case-block">
+              <div class="case-title">
+                <span class="case-title-number">01</span>
+                <h3>影片在展示什麼</h3>
+              </div>
+
+              <div class="result-box">
+                <strong>
+                  網站出現在該次 AI 摘要中
+                </strong>
+
+                <p>
+                  畫面從輸入關鍵字開始，接著顯示生成式搜尋整理出的 AI 摘要。
+                  摘要內容引用了團隊施作的網站，影片保留了這次查詢的實際呈現結果。
+                </p>
+
+                <p>
+                  這是特定時間與查詢條件下的觀察紀錄，不代表所有關鍵字都會出現，
+                  也不保證後續查詢會維持相同結果。
+                </p>
+              </div>
+            </section>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <!-- Hero -->
     <section class="hero" id="home">
       <div class="container hero-grid">
@@ -1302,60 +1360,6 @@
             </span>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Case Study -->
-    <section class="section" id="case-study">
-      <div class="container">
-        <div class="section-header center">
-          <span class="eyebrow">Case Study</span>
-
-          <h2>過往案例呈現</h2>
-
-          <p class="section-description">
-            影片記錄我們查詢一組與飯店推薦相關的關鍵字後，
-            團隊施作的網站出現在生成式搜尋 AI 摘要中的畫面。
-          </p>
-        </div>
-
-        <article class="case-shell">
-          <div class="case-video">
-            <iframe
-              src="https://www.youtube-nocookie.com/embed/6hwyCr4K378?rel=0"
-              title="飯店推薦網站出現在 AI 摘要的查詢紀錄"
-              loading="lazy"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-          </div>
-
-          <div class="case-body">
-            <section class="case-block">
-              <div class="case-title">
-                <span class="case-title-number">01</span>
-                <h3>影片在展示什麼</h3>
-              </div>
-
-              <div class="result-box">
-                <strong>
-                  網站出現在該次 AI 摘要中
-                </strong>
-
-                <p>
-                  畫面從輸入關鍵字開始，接著顯示生成式搜尋整理出的 AI 摘要。
-                  摘要內容引用了團隊施作的網站，影片保留了這次查詢的實際呈現結果。
-                </p>
-
-                <p>
-                  這是特定時間與查詢條件下的觀察紀錄，不代表所有關鍵字都會出現，
-                  也不保證後續查詢會維持相同結果。
-                </p>
-              </div>
-            </section>
-          </div>
-        </article>
       </div>
     </section>
 
