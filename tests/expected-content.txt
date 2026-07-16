@@ -1,7 +1,7 @@
 case_copy	畫面展示查詢關鍵字後，生成式搜尋整理出的 AI 摘要。
 case_heading	GEO/SEO<br>實例呈現
 case_evidence_heading	影片在展示什麼
-limitation	這項服務不承諾結果
+service_focus	這項服務的重點是把網站該有的內容與技術基礎補齊。
 service_heading	<h2>合作會處理哪些問題</h2>
 service_1	釐清網站現況
 service_2	整理重要資訊
@@ -13,6 +13,14 @@ removed_3	Sitemap、robots.txt 與爬取檢查
 removed_4	Schema 結構化資料
 removed_5	固定問題的 AI 搜尋測試
 advantage_heading	小型網站怎麼和大型網站競爭
+hero_badge	小型網站 GEO 優化
+hero_heading	讓生成式搜尋更容易
+hero_heading_emphasis	理解你的網站
+hero_description	我們從網站主題、內容架構、FAQ、內部連結與結構化資料著手，
+hero_cta	了解優化內容
+hero_removed_query	這家公司提供哪些服務？
+hero_removed_summary	AI 搜尋摘要
+hero_removed_topic	每一頁都要有明確主題
 menu_label_expression	menuButton.setAttribute("aria-label", isOpen ? "關閉選單" : "開啟選單");
 menu_open_symbol	☰
 menu_close_symbol	✕

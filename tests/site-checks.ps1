@@ -17,6 +17,14 @@ function Assert-Contains([string]$needle, [string]$message) {
   }
 }
 
+function Assert-ContainsInSection([string]$sectionId, [string]$needle, [string]$message) {
+  $pattern = '(?s)<section[^>]+id="' + [regex]::Escape($sectionId) + '".*?</section>'
+  $match = [regex]::Match($script:html, $pattern)
+  if (-not $match.Success -or -not $match.Value.Contains($needle)) {
+    $script:failures.Add($message)
+  }
+}
+
 function Assert-NotContainsInSection([string]$sectionId, [string]$needle, [string]$message) {
   $pattern = '(?s)<section[^>]+id="' + [regex]::Escape($sectionId) + '".*?</section>'
   $match = [regex]::Match($script:html, $pattern)
@@ -44,11 +52,28 @@ Assert-Contains 'class="case-first" id="case-study"' 'Case study must use the fi
 Assert-Contains 'class="research-thesis" id="home"' 'Original hero copy must follow as the research thesis.'
 Assert-Before 'id="case-study"' 'id="home"' 'Case study must appear before the research thesis.'
 Assert-Before 'id="home"' 'id="geo"' 'Research thesis must appear before the GEO explanation.'
+Assert-ContainsInSection 'home' $expected['hero_badge'] 'Research thesis badge copy must remain.'
+Assert-ContainsInSection 'home' $expected['hero_heading'] 'Research thesis heading must remain.'
+Assert-ContainsInSection 'home' $expected['hero_heading_emphasis'] 'Research thesis emphasized heading must remain.'
+Assert-ContainsInSection 'home' $expected['hero_description'] 'Research thesis description must remain.'
+Assert-ContainsInSection 'home' $expected['hero_cta'] 'Research thesis CTA label must remain.'
+Assert-ContainsInSection 'home' $expected['service_focus'] 'Research thesis service-focus note must remain.'
+Assert-NotContainsInSection 'home' 'class="hero-visual"' 'Research thesis illustration markup must be removed.'
+Assert-NotContainsInSection 'home' $expected['hero_removed_query'] 'AI-search query illustration copy must be removed.'
+Assert-NotContainsInSection 'home' $expected['hero_removed_summary'] 'AI-search summary illustration copy must be removed.'
+Assert-NotContainsInSection 'home' $expected['hero_removed_topic'] 'Floating technical illustration copy must be removed.'
+Assert-Count ([regex]::Escape('.hero-visual')) 0 'Hero visual CSS and markup must be removed.'
+Assert-Count ([regex]::Escape('.search-card')) 0 'Search-card CSS and markup must be removed.'
+Assert-Count ([regex]::Escape('.floating-card')) 0 'Floating-card CSS and markup must be removed.'
+Assert-Contains '<a class="button button-primary" href="#services">' 'Research thesis CTA must target Services.'
+Assert-Count 'href="#advantages"' 0 'No CTA may target the removed Advantages section.'
+Assert-Count '(?s)\.research-thesis \.hero-content\s*\{[^}]*max-width:\s*860px;[^}]*text-align:\s*center;' 1 'Centered research thesis content rules are missing.'
+Assert-Count '(?s)\.research-thesis \.hero-actions\s*\{[^}]*justify-content:\s*center;' 1 'Research thesis actions must be centered.'
 Assert-Contains 'https://www.youtube-nocookie.com/embed/6hwyCr4K378?rel=0' 'Privacy-enhanced case-study video URL must be preserved.'
 Assert-Contains $expected['case_copy'] 'Approved case-study evidence copy must be preserved.'
 Assert-Contains $expected['case_heading'] 'Original case-study heading must be preserved.'
 Assert-Contains $expected['case_evidence_heading'] 'Original case-study evidence label must be preserved.'
-Assert-Contains $expected['limitation'] 'Result limitation statement must be preserved.'
+Assert-Contains $expected['service_focus'] 'Service focus statement must be preserved.'
 Assert-Contains $expected['service_heading'] 'Service section must use the approved outcome-oriented heading.'
 Assert-Contains $expected['service_1'] 'Service card 1 heading is missing.'
 Assert-Contains $expected['service_2'] 'Service card 2 heading is missing.'

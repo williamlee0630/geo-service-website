@@ -399,136 +399,6 @@
       font-size: 0.9rem;
     }
 
-    .hero-visual {
-      position: relative;
-    }
-
-    .search-card {
-      position: relative;
-      z-index: 2;
-      padding: 26px;
-      border: 1px solid rgba(226, 232, 240, 0.95);
-      border-radius: var(--radius-large);
-      background: rgba(255, 255, 255, 0.92);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(20px);
-    }
-
-    .window-bar {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      margin-bottom: 25px;
-    }
-
-    .window-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #cbd5e1;
-    }
-
-    .search-box {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 16px 18px;
-      color: var(--secondary);
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      background: #ffffff;
-      font-weight: 700;
-    }
-
-    .ai-answer {
-      margin-top: 18px;
-      padding: 22px;
-      border-radius: 18px;
-      background: #f8fafc;
-    }
-
-    .ai-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 13px;
-      color: var(--primary);
-      font-size: 0.85rem;
-      font-weight: 900;
-    }
-
-    .answer-line {
-      height: 10px;
-      margin-bottom: 10px;
-      border-radius: 999px;
-      background: #dbe3ee;
-    }
-
-    .answer-line:nth-child(2) {
-      width: 94%;
-    }
-
-    .answer-line:nth-child(3) {
-      width: 86%;
-    }
-
-    .answer-line:nth-child(4) {
-      width: 72%;
-    }
-
-    .source-list {
-      display: grid;
-      margin-top: 20px;
-      gap: 10px;
-    }
-
-    .source-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 13px 14px;
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      background: #ffffff;
-    }
-
-    .source-number {
-      display: grid;
-      flex-shrink: 0;
-      width: 29px;
-      height: 29px;
-      place-items: center;
-      color: var(--primary);
-      border-radius: 8px;
-      background: var(--primary-light);
-      font-size: 0.8rem;
-      font-weight: 900;
-    }
-
-    .floating-card {
-      position: absolute;
-      z-index: 3;
-      right: -30px;
-      bottom: -35px;
-      width: 220px;
-      padding: 18px;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      background: #ffffff;
-      box-shadow: var(--shadow);
-    }
-
-    .floating-card strong {
-      display: block;
-      margin-bottom: 5px;
-      color: var(--secondary);
-    }
-
-    .floating-card span {
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
     /* GEO introduction */
 
     .geo-grid {
@@ -1343,14 +1213,13 @@
     }
 
     .research-thesis-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
-      align-items: center;
-      gap: clamp(42px, 6vw, 80px);
+      display: block;
     }
 
     .research-thesis .hero-content {
-      text-align: left;
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
     }
 
     .research-thesis .hero-badge {
@@ -1370,11 +1239,17 @@
 
     .research-thesis .hero-description,
     .research-thesis .hero-note {
+      margin-right: auto;
+      margin-left: auto;
       color: #aebbd2;
     }
 
+    .research-thesis .hero-note {
+      max-width: 760px;
+    }
+
     .research-thesis .hero-actions {
-      justify-content: flex-start;
+      justify-content: center;
     }
 
     .research-thesis .button-primary {
@@ -1385,17 +1260,6 @@
 
     .research-thesis .button-primary:hover {
       background: #a9bcff;
-    }
-
-    .research-thesis .search-card {
-      border-color: rgba(134, 167, 255, 0.22);
-      background: rgba(255, 255, 255, 0.96);
-      box-shadow: 0 30px 75px rgba(0, 0, 0, 0.26);
-    }
-
-    .research-thesis .floating-card {
-      border-color: rgba(134, 167, 255, 0.28);
-      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.25);
     }
 
     #geo {
@@ -1547,7 +1411,6 @@
     /* Responsive */
 
     @media (max-width: 1024px) {
-      .research-thesis-grid,
       .case-first-grid,
       .geo-grid,
       .about-grid {
@@ -1564,15 +1427,6 @@
 
       .case-first-media {
         width: 100%;
-      }
-
-      .research-thesis .hero-content {
-        max-width: 760px;
-      }
-
-      .research-thesis .hero-visual {
-        max-width: 650px;
-        margin: 24px auto 0;
       }
 
       .service-grid,
@@ -1642,9 +1496,6 @@
         padding: 36px 26px;
       }
 
-      .floating-card {
-        right: 12px;
-      }
     }
 
     @media (max-width: 640px) {
@@ -1728,18 +1579,6 @@
 
       .hero-actions .button {
         width: 100%;
-      }
-
-      .floating-card {
-        position: relative;
-        right: auto;
-        bottom: auto;
-        width: 100%;
-        margin-top: 16px;
-      }
-
-      .search-card {
-        padding: 18px;
       }
 
       .case-body {
@@ -1927,7 +1766,7 @@
           </p>
 
           <div class="hero-actions">
-            <a class="button button-primary" href="#advantages">
+            <a class="button button-primary" href="#services">
               了解優化內容
             </a>
 
@@ -1937,55 +1776,6 @@
             搜尋排名與 AI 引用會受到產業競爭、網站基礎和時間影響。
             這項服務的重點是把網站該有的內容與技術基礎補齊。
           </p>
-        </div>
-
-        <div class="hero-visual" aria-hidden="true">
-          <div class="search-card">
-            <div class="window-bar">
-              <span class="window-dot"></span>
-              <span class="window-dot"></span>
-              <span class="window-dot"></span>
-            </div>
-
-            <div class="search-box">
-              <span>⌕</span>
-              這家公司提供哪些服務？
-            </div>
-
-            <div class="ai-answer">
-              <div class="ai-label">
-                ✦ AI 搜尋摘要
-              </div>
-
-              <div class="answer-line"></div>
-              <div class="answer-line"></div>
-              <div class="answer-line"></div>
-
-              <div class="source-list">
-                <div class="source-item">
-                  <span class="source-number">1</span>
-                  <span>服務內容與適用對象</span>
-                </div>
-
-                <div class="source-item">
-                  <span class="source-number">2</span>
-                  <span>實際案例與執行方式</span>
-                </div>
-
-                <div class="source-item">
-                  <span class="source-number">3</span>
-                  <span>合作流程與常見問題</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="floating-card">
-            <strong>每一頁都要有明確主題</strong>
-            <span>
-              搜尋系統才能判斷頁面適合回答哪些問題。
-            </span>
-          </div>
         </div>
       </div>
     </section>

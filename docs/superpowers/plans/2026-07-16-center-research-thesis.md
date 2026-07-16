@@ -34,7 +34,13 @@
 - Consumes: Existing `#home`, `.research-thesis-grid`, `.hero-content`, `.hero-actions`, and `#services` anchors.
 - Produces: A centered text-only `#home` section whose CTA links to `#services`.
 
-- [ ] **Step 1: Add preserved and removed copy fixtures**
+- [x] **Step 1: Align preserved and removed copy fixtures with the current page**
+
+Replace the stale `limitation` fixture with the current user-authored service-focus copy:
+
+```text
+service_focus	這項服務的重點是把網站該有的內容與技術基礎補齊。
+```
 
 Append these lines to `tests/expected-content.txt`:
 
@@ -44,13 +50,12 @@ hero_heading	讓生成式搜尋更容易
 hero_heading_emphasis	理解你的網站
 hero_description	我們從網站主題、內容架構、FAQ、內部連結與結構化資料著手，
 hero_cta	了解優化內容
-hero_note	這項服務不承諾結果
 hero_removed_query	這家公司提供哪些服務？
 hero_removed_summary	AI 搜尋摘要
 hero_removed_topic	每一頁都要有明確主題
 ```
 
-- [ ] **Step 2: Write the failing structural checks**
+- [x] **Step 2: Write the failing structural checks**
 
 Add these assertions after the existing research thesis order assertions in `tests/site-checks.ps1`:
 
@@ -60,7 +65,7 @@ Assert-ContainsInSection 'home' $expected['hero_heading'] 'Research thesis headi
 Assert-ContainsInSection 'home' $expected['hero_heading_emphasis'] 'Research thesis emphasized heading must remain.'
 Assert-ContainsInSection 'home' $expected['hero_description'] 'Research thesis description must remain.'
 Assert-ContainsInSection 'home' $expected['hero_cta'] 'Research thesis CTA label must remain.'
-Assert-ContainsInSection 'home' $expected['hero_note'] 'Research thesis limitation note must remain.'
+Assert-ContainsInSection 'home' $expected['service_focus'] 'Research thesis service-focus note must remain.'
 Assert-NotContainsInSection 'home' 'class="hero-visual"' 'Research thesis illustration markup must be removed.'
 Assert-NotContainsInSection 'home' $expected['hero_removed_query'] 'AI-search query illustration copy must be removed.'
 Assert-NotContainsInSection 'home' $expected['hero_removed_summary'] 'AI-search summary illustration copy must be removed.'
@@ -72,6 +77,12 @@ Assert-Contains '<a class="button button-primary" href="#services">' 'Research t
 Assert-Count 'href="#advantages"' 0 'No CTA may target the removed Advantages section.'
 Assert-Count '(?s)\.research-thesis \.hero-content\s*\{[^}]*max-width:\s*860px;[^}]*text-align:\s*center;' 1 'Centered research thesis content rules are missing.'
 Assert-Count '(?s)\.research-thesis \.hero-actions\s*\{[^}]*justify-content:\s*center;' 1 'Research thesis actions must be centered.'
+```
+
+Replace the stale global assertion with:
+
+```powershell
+Assert-Contains $expected['service_focus'] 'Service focus statement must be preserved.'
 ```
 
 Define this helper immediately after `Assert-Contains` so preserved copy checks are scoped to `#home`:
@@ -86,7 +97,7 @@ function Assert-ContainsInSection([string]$sectionId, [string]$needle, [string]$
 }
 ```
 
-- [ ] **Step 3: Run checks and verify the new expectations fail**
+- [x] **Step 3: Run checks and verify the new expectations fail**
 
 Run:
 
@@ -96,7 +107,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tests\site-checks.ps1
 
 Expected: FAIL because illustration markup and CSS remain, the CTA still targets `#advantages`, and centered content rules are absent.
 
-- [ ] **Step 4: Remove illustration-only base CSS**
+- [x] **Step 4: Remove illustration-only base CSS**
 
 Delete the complete CSS rule groups for:
 
@@ -119,7 +130,7 @@ Delete the complete CSS rule groups for:
 
 Also delete the research-thesis-specific `.search-card` and `.floating-card` overrides and all responsive `.hero-visual`, `.search-card`, and `.floating-card` rules. Do not change unrelated hero, case-study, or card CSS.
 
-- [ ] **Step 5: Replace the two-column research thesis layout rules**
+- [x] **Step 5: Replace the two-column research thesis layout rules**
 
 Set the desktop rules to:
 
@@ -152,7 +163,7 @@ Set the desktop rules to:
 
 Remove `.research-thesis-grid` from the `max-width: 1024px` multi-selector and remove the now-redundant responsive `.research-thesis .hero-content` and `.research-thesis .hero-visual` rules.
 
-- [ ] **Step 6: Remove the illustration markup and repair the CTA target**
+- [x] **Step 6: Remove the illustration markup and repair the CTA target**
 
 Change the CTA opening tag to:
 
@@ -162,7 +173,7 @@ Change the CTA opening tag to:
 
 Delete the complete `<div class="hero-visual" aria-hidden="true">...</div>` block. Preserve the `.hero-content` markup and every visible line inside it exactly.
 
-- [ ] **Step 7: Run the complete structural checks**
+- [x] **Step 7: Run the complete structural checks**
 
 Run:
 
@@ -172,7 +183,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tests\site-checks.ps1
 
 Expected: `PASS: structural and content checks`
 
-- [ ] **Step 8: Review the focused diff**
+- [x] **Step 8: Review the focused diff**
 
 Run:
 
@@ -182,7 +193,7 @@ git diff -- index.html tests/site-checks.ps1 tests/expected-content.txt
 
 Expected: Only illustration markup/CSS is deleted, research thesis alignment rules are changed, the CTA target is repaired, and regression fixtures/checks are added.
 
-- [ ] **Step 9: Commit the implementation**
+- [x] **Step 9: Commit the implementation**
 
 ```powershell
 git add -- index.html tests/site-checks.ps1 tests/expected-content.txt docs/superpowers/plans/2026-07-16-center-research-thesis.md
