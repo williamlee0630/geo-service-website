@@ -28,7 +28,7 @@
 - Consumes: Existing `index.html` section IDs and the `$expected` content map loaded from `tests/expected-content.txt`.
 - Produces: A page without `#advantages`, protected by structural regression checks.
 
-- [ ] **Step 1: Write the failing structural checks**
+- [x] **Step 1: Write the failing structural checks**
 
 Add this line to `tests/expected-content.txt`:
 
@@ -41,10 +41,10 @@ Add these assertions after the service-section assertions in `tests/site-checks.
 ```powershell
 Assert-Count 'id="advantages"' 0 'Competitive Advantages section must be removed.'
 Assert-Count ([regex]::Escape($expected['advantage_heading'])) 0 'Competitive Advantages heading must be removed.'
-Assert-Count '(?s)<section[^>]+id="services".*?</section>\s*<!-- Process -->\s*<section[^>]+id="process"' 1 'Services must flow directly into the process section.'
+Assert-Count '(?s)<section[^>]+id="services"(?:(?!<section).)*?</section>\s*<!-- Process -->\s*<section[^>]+id="process"' 1 'Services must flow directly into the process section.'
 ```
 
-- [ ] **Step 2: Run the checks to verify they fail**
+- [x] **Step 2: Run the checks to verify they fail**
 
 Run:
 
@@ -54,7 +54,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tests\site-checks.ps1
 
 Expected: FAIL because `id="advantages"` and the Competitive Advantages heading each appear once.
 
-- [ ] **Step 3: Remove the section from the page**
+- [x] **Step 3: Remove the section from the page**
 
 Delete the complete HTML range beginning with:
 
@@ -71,7 +71,7 @@ and ending with the matching closing tag immediately before:
 
 Do not change the surrounding Services or Process markup.
 
-- [ ] **Step 4: Run the checks to verify they pass**
+- [x] **Step 4: Run the checks to verify they pass**
 
 Run:
 
@@ -81,7 +81,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tests\site-checks.ps1
 
 Expected: `PASS: structural and content checks`
 
-- [ ] **Step 5: Review the focused diff**
+- [x] **Step 5: Review the focused diff**
 
 Run:
 
@@ -91,7 +91,7 @@ git diff -- index.html tests/site-checks.ps1 tests/expected-content.txt
 
 Expected: Only the Competitive Advantages HTML block is deleted, with three regression assertions and one expected-content entry added.
 
-- [ ] **Step 6: Commit the implementation**
+- [x] **Step 6: Commit the implementation**
 
 ```powershell
 git add -- index.html tests/site-checks.ps1 tests/expected-content.txt

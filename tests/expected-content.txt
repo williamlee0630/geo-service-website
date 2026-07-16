@@ -12,6 +12,7 @@ removed_2	Canonical 與內部連結
 removed_3	Sitemap、robots.txt 與爬取檢查
 removed_4	Schema 結構化資料
 removed_5	固定問題的 AI 搜尋測試
+advantage_heading	小型網站怎麼和大型網站競爭
 menu_label_expression	menuButton.setAttribute("aria-label", isOpen ? "關閉選單" : "開啟選單");
 menu_open_symbol	☰
 menu_close_symbol	✕
