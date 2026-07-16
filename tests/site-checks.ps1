@@ -48,10 +48,12 @@ foreach ($removedId in @('home', 'geo', 'services', 'process', 'faq')) {
 }
 
 Assert-Contains '<a class="logo" href="#case-study"' 'Logo must return to the success case.'
-Assert-Contains '<a href="#case-study">成功案例</a>' 'Navigation must link to the success case.'
-Assert-Contains '<a href="#about">關於我</a>' 'Navigation must link to the personal introduction.'
-Assert-Count '<a href="#case-study">成功案例</a>' 2 'Header and footer must both link to the success case.'
-Assert-Count '<a href="#about">關於我</a>' 2 'Header and footer must both link to the personal introduction.'
+$caseLink = '<a href="#case-study">' + $expected['nav_case'] + '</a>'
+$aboutLink = '<a href="#about">' + $expected['nav_about'] + '</a>'
+Assert-Contains $caseLink 'Navigation must link to the success case.'
+Assert-Contains $aboutLink 'Navigation must link to the personal introduction.'
+Assert-Count ([regex]::Escape($caseLink)) 2 'Header and footer must both link to the success case.'
+Assert-Count ([regex]::Escape($aboutLink)) 2 'Header and footer must both link to the personal introduction.'
 
 Assert-ContainsInSection 'case-study' $expected['case_copy'] 'Approved case-study evidence copy must remain.'
 Assert-ContainsInSection 'case-study' $expected['case_heading'] 'Case-study heading must remain.'
