@@ -68,4 +68,3 @@ Run: `node tests/static-server.cjs 4173` and inspect the rendered desktop and 37
 - [ ] **Step 4: Commit the implementation**
 
 Run: `git add index.html && git commit -m "refactor: focus homepage on case and introduction"`
-

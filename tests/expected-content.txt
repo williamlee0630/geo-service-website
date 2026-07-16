@@ -1,6 +1,9 @@
 case_copy	以下展示我們團隊對特定網站進行GEO優化後，成功讓施作的小型網站超越大型網站並且被AI摘要收錄並引用。
 case_heading	GEO/SEO<br>實例呈現
 case_evidence_heading	影片在展示什麼
+case_evidence_copy	摘要內容引用了團隊施作的網站。
+case_probability	由於生成式語言模型的回應具有機率性，
+case_probability_action	因此需要透過 GEO 優化來提升內容被辨識、收錄與引用的機會。
 about_heading	個人簡介
 about_copy	我目前就讀資料科學系，研究方向聚焦於 GEO、AEO 與生成式搜尋
 nav_case	成功案例

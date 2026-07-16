@@ -58,6 +58,9 @@ Assert-Count ([regex]::Escape($aboutLink)) 2 'Header and footer must both link t
 Assert-ContainsInSection 'case-study' $expected['case_copy'] 'Approved case-study evidence copy must remain.'
 Assert-ContainsInSection 'case-study' $expected['case_heading'] 'Case-study heading must remain.'
 Assert-ContainsInSection 'case-study' $expected['case_evidence_heading'] 'Case-study evidence label must remain.'
+Assert-ContainsInSection 'case-study' $expected['case_evidence_copy'] 'Case-study citation evidence must remain.'
+Assert-ContainsInSection 'case-study' $expected['case_probability'] 'Case-study probability disclaimer must remain.'
+Assert-ContainsInSection 'case-study' $expected['case_probability_action'] 'Case-study GEO disclaimer must remain.'
 Assert-Contains 'https://www.youtube-nocookie.com/embed/6hwyCr4K378?rel=0' 'Case-study video must remain.'
 
 Assert-ContainsInSection 'about' $expected['about_heading'] 'Personal introduction heading must remain.'
