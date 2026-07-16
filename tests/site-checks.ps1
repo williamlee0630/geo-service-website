@@ -17,6 +17,12 @@ function Assert-Contains([string]$needle, [string]$message) {
   }
 }
 
+function Assert-NotContains([string]$needle, [string]$message) {
+  if ($script:html.Contains($needle)) {
+    $script:failures.Add($message)
+  }
+}
+
 function Assert-ContainsInSection([string]$sectionId, [string]$needle, [string]$message) {
   $pattern = '(?s)<section[^>]+id="' + [regex]::Escape($sectionId) + '".*?</section>'
   $match = [regex]::Match($script:html, $pattern)
@@ -25,97 +31,53 @@ function Assert-ContainsInSection([string]$sectionId, [string]$needle, [string]$
   }
 }
 
-function Assert-NotContainsInSection([string]$sectionId, [string]$needle, [string]$message) {
-  $pattern = '(?s)<section[^>]+id="' + [regex]::Escape($sectionId) + '".*?</section>'
-  $match = [regex]::Match($script:html, $pattern)
-  if (-not $match.Success -or $match.Value.Contains($needle)) {
-    $script:failures.Add($message)
-  }
-}
-
-function Assert-Before([string]$first, [string]$second, [string]$message) {
-  $firstIndex = $script:html.IndexOf($first)
-  $secondIndex = $script:html.IndexOf($second)
-  if ($firstIndex -lt 0 -or $secondIndex -lt 0 -or $firstIndex -ge $secondIndex) {
-    $script:failures.Add($message)
-  }
-}
-
-function Assert-Count([string]$pattern, [int]$expected, [string]$message) {
+function Assert-Count([string]$pattern, [int]$expectedCount, [string]$message) {
   $actual = [regex]::Matches($script:html, $pattern).Count
-  if ($actual -ne $expected) {
-    $script:failures.Add("$message Expected $expected, found $actual.")
+  if ($actual -ne $expectedCount) {
+    $script:failures.Add("$message Expected $expectedCount, found $actual.")
   }
 }
 
-Assert-Contains 'class="case-first" id="case-study"' 'Case study must use the first-screen case-first layout.'
-Assert-Contains 'class="research-thesis" id="home"' 'Original hero copy must follow as the research thesis.'
-Assert-Before 'id="case-study"' 'id="home"' 'Case study must appear before the research thesis.'
-Assert-Before 'id="home"' 'id="geo"' 'Research thesis must appear before the GEO explanation.'
-Assert-ContainsInSection 'home' $expected['hero_badge'] 'Research thesis badge copy must remain.'
-Assert-ContainsInSection 'home' $expected['hero_heading'] 'Research thesis heading must remain.'
-Assert-ContainsInSection 'home' $expected['hero_heading_emphasis'] 'Research thesis emphasized heading must remain.'
-Assert-ContainsInSection 'home' $expected['hero_description'] 'Research thesis description must remain.'
-Assert-ContainsInSection 'home' $expected['hero_cta'] 'Research thesis CTA label must remain.'
-Assert-ContainsInSection 'home' $expected['service_focus'] 'Research thesis service-focus note must remain.'
-Assert-NotContainsInSection 'home' 'class="hero-visual"' 'Research thesis illustration markup must be removed.'
-Assert-NotContainsInSection 'home' $expected['hero_removed_query'] 'AI-search query illustration copy must be removed.'
-Assert-NotContainsInSection 'home' $expected['hero_removed_summary'] 'AI-search summary illustration copy must be removed.'
-Assert-NotContainsInSection 'home' $expected['hero_removed_topic'] 'Floating technical illustration copy must be removed.'
-Assert-Count ([regex]::Escape('.hero-visual')) 0 'Hero visual CSS and markup must be removed.'
-Assert-Count ([regex]::Escape('.search-card')) 0 'Search-card CSS and markup must be removed.'
-Assert-Count ([regex]::Escape('.floating-card')) 0 'Floating-card CSS and markup must be removed.'
-Assert-Contains '<a class="button button-primary" href="#services">' 'Research thesis CTA must target Services.'
-Assert-Count 'href="#advantages"' 0 'No CTA may target the removed Advantages section.'
-Assert-Count '(?s)\.research-thesis \.hero-content\s*\{[^}]*max-width:\s*860px;[^}]*text-align:\s*center;' 1 'Centered research thesis content rules are missing.'
-Assert-Count '(?s)\.research-thesis \.hero-actions\s*\{[^}]*justify-content:\s*center;' 1 'Research thesis actions must be centered.'
-Assert-Contains 'https://www.youtube-nocookie.com/embed/6hwyCr4K378?rel=0' 'Privacy-enhanced case-study video URL must be preserved.'
-Assert-Contains $expected['case_copy'] 'Approved case-study evidence copy must be preserved.'
-Assert-Contains $expected['case_heading'] 'Original case-study heading must be preserved.'
-Assert-Contains $expected['case_evidence_heading'] 'Original case-study evidence label must be preserved.'
-Assert-Contains $expected['service_focus'] 'Service focus statement must be preserved.'
-Assert-Contains $expected['service_heading'] 'Service section must use the approved outcome-oriented heading.'
-Assert-Contains $expected['service_1'] 'Service card 1 heading is missing.'
-Assert-Contains $expected['service_2'] 'Service card 2 heading is missing.'
-Assert-Contains $expected['service_3'] 'Service card 3 heading is missing.'
-Assert-Contains $expected['service_4'] 'Service card 4 heading is missing.'
-Assert-NotContainsInSection 'services' $expected['removed_1'] 'Service section reveals implementation checklist details.'
-Assert-NotContainsInSection 'services' $expected['removed_2'] 'Service section reveals implementation checklist details.'
-Assert-NotContainsInSection 'services' $expected['removed_3'] 'Service section reveals implementation checklist details.'
-Assert-NotContainsInSection 'services' $expected['removed_4'] 'Service section reveals implementation checklist details.'
-Assert-NotContainsInSection 'services' $expected['removed_5'] 'Service section reveals implementation checklist details.'
-Assert-Count 'id="advantages"' 0 'Competitive Advantages section must be removed.'
-Assert-Count ([regex]::Escape($expected['advantage_heading'])) 0 'Competitive Advantages heading must be removed.'
-Assert-Count '(?s)<section[^>]+id="services"(?:(?!<section).)*?</section>\s*<!-- Process -->\s*<section[^>]+id="process"' 1 'Services must flow directly into the process section.'
-Assert-Count '<details class="faq-item"' 8 'All eight FAQ items must remain.'
-Assert-Count '<span class="skill">' 8 'All eight skill tags must remain.'
+Assert-Count '<section\b' 2 'Main content must contain exactly two sections.'
+Assert-Count 'id="case-study"' 1 'The success case section must remain exactly once.'
+Assert-Count 'id="about"' 1 'The personal introduction section must remain exactly once.'
+
+foreach ($removedId in @('home', 'geo', 'services', 'process', 'faq')) {
+  Assert-NotContains ('id="' + $removedId + '"') "Removed section #$removedId is still present."
+  Assert-NotContains ('href="#' + $removedId + '"') "Navigation still links to removed section #$removedId."
+}
+
+Assert-Contains '<a class="logo" href="#case-study"' 'Logo must return to the success case.'
+Assert-Contains '<a href="#case-study">成功案例</a>' 'Navigation must link to the success case.'
+Assert-Contains '<a href="#about">關於我</a>' 'Navigation must link to the personal introduction.'
+Assert-Count '<a href="#case-study">成功案例</a>' 2 'Header and footer must both link to the success case.'
+Assert-Count '<a href="#about">關於我</a>' 2 'Header and footer must both link to the personal introduction.'
+
+Assert-ContainsInSection 'case-study' $expected['case_copy'] 'Approved case-study evidence copy must remain.'
+Assert-ContainsInSection 'case-study' $expected['case_heading'] 'Case-study heading must remain.'
+Assert-ContainsInSection 'case-study' $expected['case_evidence_heading'] 'Case-study evidence label must remain.'
+Assert-Contains 'https://www.youtube-nocookie.com/embed/6hwyCr4K378?rel=0' 'Case-study video must remain.'
+
+Assert-ContainsInSection 'about' $expected['about_heading'] 'Personal introduction heading must remain.'
+Assert-ContainsInSection 'about' $expected['about_copy'] 'Approved biography must remain.'
 Assert-Contains 'assets/about-photo.jpg' 'Portrait asset must remain.'
-Assert-Contains 'application/ld+json' 'JSON-LD must remain.'
-Assert-Contains 'property="og:title"' 'Open Graph title must remain.'
-Assert-Contains '--lab-ink: #07111f;' 'Research Lab ink token is missing.'
-Assert-Contains '--lab-accent: #86a7ff;' 'Research Lab accent token is missing.'
-Assert-Contains '.case-first-grid {' 'Case-first desktop grid styles are missing.'
-Assert-Contains '.research-thesis-grid {' 'Research thesis layout styles are missing.'
-Assert-Contains '@media (prefers-reduced-motion: reduce)' 'Reduced-motion support is missing.'
-Assert-Contains '@media (max-width: 640px)' 'Small-screen breakpoint is missing.'
-Assert-Contains 'overflow-x: clip;' 'Horizontal overflow safeguard is missing.'
-Assert-Contains 'aria-controls="navLinks"' 'Menu button must identify the controlled navigation.'
-Assert-Contains '<span class="menu-line"></span>' 'Menu button must use stable CSS icon lines.'
-Assert-Contains $expected['menu_label_expression'] 'Menu state must update its accessible label.'
-Assert-Contains '<a class="logo" href="#case-study"' 'Logo must return to the case-first top section.'
+Assert-Count '<span class="skill">' 8 'All eight skill tags must remain.'
+
+Assert-Contains 'application/ld+json' 'Person structured data must remain.'
+Assert-Contains '"@type": "Person"' 'Person structured data must remain.'
+Assert-NotContains '"@type": "Service"' 'Service structured data must be removed with the service section.'
 Assert-Contains '<a class="skip-link" href="#main-content">' 'Keyboard users need a skip-to-content link.'
 Assert-Contains '<main id="main-content">' 'Main content must expose a skip-link target.'
-Assert-Contains '--case-container: 1260px;' 'Expanded case container token is missing.'
-Assert-Contains 'grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);' 'Desktop case grid must allocate 64 percent to video.'
-Assert-Contains 'width: min(calc(100% - 28px), var(--case-container));' 'Mobile case gutter must remain 14px per side.'
-
-if ($html.Contains($expected['menu_open_symbol']) -or $html.Contains($expected['menu_close_symbol'])) {
-  $failures.Add('Structural UI must not use Emoji menu icons.')
-}
+Assert-Contains 'aria-controls="navLinks"' 'Menu button must identify the controlled navigation.'
+Assert-Contains '<span class="menu-line"></span>' 'Menu button must retain CSS icon lines.'
+Assert-Contains $expected['menu_label_expression'] 'Menu state must update its accessible label.'
+Assert-Contains '@media (prefers-reduced-motion: reduce)' 'Reduced-motion support must remain.'
+Assert-Contains '@media (max-width: 640px)' 'Small-screen breakpoint must remain.'
+Assert-Contains 'overflow-x: clip;' 'Horizontal overflow safeguard must remain.'
 
 if ($failures.Count -gt 0) {
   $failures | ForEach-Object { Write-Error $_ -ErrorAction Continue }
   exit 1
 }
 
-Write-Output 'PASS: structural and content checks'
+Write-Output 'PASS: case-and-about-only structural checks'
