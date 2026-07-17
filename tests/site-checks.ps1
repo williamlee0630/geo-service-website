@@ -83,6 +83,12 @@ Assert-Contains '--case-container: 1560px;' 'Expanded case container token must 
 Assert-Contains 'grid-template-columns: minmax(0, 0.6fr) minmax(0, 1.4fr);' 'Desktop case grid must allocate 70 percent to video.'
 Assert-Contains '@media (max-width: 1024px)' 'Tablet breakpoint must remain.'
 Assert-Contains 'width: min(calc(100% - 28px), var(--case-container));' 'Mobile case gutter must remain 14px per side.'
+Assert-Contains 'color: #d7e0ee;' 'Case lead must use the approved brighter color.'
+Assert-Contains 'font-size: clamp(1.06rem, 1.5vw, 1.18rem);' 'Case lead must use the approved larger size.'
+Assert-Contains 'font-weight: 600;' 'Case lead must use the approved semibold weight.'
+Assert-Contains 'color: #cbd6e8;' 'Case evidence copy must use the approved brighter color.'
+Assert-Contains 'font-size: 0.96rem;' 'Case evidence copy must use the approved larger size.'
+Assert-Contains 'font-weight: 550;' 'Case evidence copy must use the approved medium weight.'
 
 if ($failures.Count -gt 0) {
   $failures | ForEach-Object { Write-Error $_ -ErrorAction Continue }
