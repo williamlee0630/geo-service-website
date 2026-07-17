@@ -79,6 +79,10 @@ Assert-Contains $expected['menu_label_expression'] 'Menu state must update its a
 Assert-Contains '@media (prefers-reduced-motion: reduce)' 'Reduced-motion support must remain.'
 Assert-Contains '@media (max-width: 640px)' 'Small-screen breakpoint must remain.'
 Assert-Contains 'overflow-x: clip;' 'Horizontal overflow safeguard must remain.'
+Assert-Contains '--case-container: 1360px;' 'Expanded case container token must remain at 1360px.'
+Assert-Contains 'grid-template-columns: minmax(0, 0.6fr) minmax(0, 1.4fr);' 'Desktop case grid must allocate 70 percent to video.'
+Assert-Contains '@media (max-width: 1024px)' 'Tablet breakpoint must remain.'
+Assert-Contains 'width: min(calc(100% - 28px), var(--case-container));' 'Mobile case gutter must remain 14px per side.'
 
 if ($failures.Count -gt 0) {
   $failures | ForEach-Object { Write-Error $_ -ErrorAction Continue }
