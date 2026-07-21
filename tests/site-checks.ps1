@@ -1,4 +1,4 @@
-$ErrorActionPreference = 'Stop'
+﻿$ErrorActionPreference = 'Stop'
 
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $indexPath = Join-Path $projectRoot 'index.html'
@@ -61,16 +61,27 @@ Assert-ContainsInSection 'case-study' $expected['case_evidence_heading'] 'Case-s
 Assert-ContainsInSection 'case-study' $expected['case_evidence_copy'] 'Case-study citation evidence must remain.'
 Assert-ContainsInSection 'case-study' $expected['case_probability'] 'Case-study probability disclaimer must remain.'
 Assert-ContainsInSection 'case-study' $expected['case_probability_action'] 'Case-study GEO disclaimer must remain.'
+Assert-ContainsInSection 'case-study' 'Research Note / 01' 'Case-study index must identify a research note.'
+Assert-ContainsInSection 'case-study' '生成式搜尋觀察' 'Case-study badge must frame the result as an observation.'
+Assert-ContainsInSection 'case-study' '這次查詢中，這個網站出現於 AI 摘要中。' 'Case-study evidence must state the observed result precisely.'
 Assert-Contains 'https://www.youtube-nocookie.com/embed/6hwyCr4K378?rel=0' 'Case-study video must remain.'
 
 Assert-ContainsInSection 'about' $expected['about_heading'] 'Personal introduction heading must remain.'
 Assert-ContainsInSection 'about' $expected['about_copy'] 'Approved biography must remain.'
+Assert-ContainsInSection 'about' '為了驗證這些問題，我不只閱讀資料，也會實際建置網站、整理內容架構' 'Biography must connect practical work to research.'
 Assert-Contains 'assets/about-photo.jpg' 'Portrait asset must remain.'
 Assert-Count '<span class="skill">' 8 'All eight skill tags must remain.'
 
 Assert-Contains 'application/ld+json' 'Person structured data must remain.'
 Assert-Contains '"@type": "Person"' 'Person structured data must remain.'
+Assert-Contains '<title>GEO 實驗與生成式搜尋研究｜個人研究紀錄</title>' 'Document title must use the researcher positioning.'
+Assert-Contains '"jobTitle": "資料科學學生與 GEO 研究實作者"' 'Person structured data must use the researcher positioning.'
 Assert-NotContains '"@type": "Service"' 'Service structured data must be removed with the service section.'
+
+foreach ($salesPhrase in @('成功案例', '我們團隊', '施作', '中小企業 GEO 網站優化', '網站優化服務者')) {
+  Assert-NotContains $salesPhrase ('Sales-oriented phrase remains: ' + $salesPhrase)
+}
+
 Assert-Contains '<a class="skip-link" href="#main-content">' 'Keyboard users need a skip-to-content link.'
 Assert-Contains '<main id="main-content">' 'Main content must expose a skip-link target.'
 Assert-Contains 'aria-controls="navLinks"' 'Menu button must identify the controlled navigation.'
